@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA Image Keyword Search</title>
+    <style>
+        #jsonOutput {
+            white-space: pre; /* Maintains formatting */
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>NASA Image Keyword Search</h1>
+    <input type="text" id="keyword" placeholder="Enter keyword (e.g., 'moon')">
+    <button onclick="getImages()">Search Images</button>
+    <div id="jsonOutput"></div>
+
+    <script>
+        function getImages() {
+    var keyword = document.getElementById('keyword').value;
+    if (keyword) {
+        fetch('/get_images/?keyword=' + encodeURIComponent(keyword))
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                var outputDiv = document.getElementById('jsonOutput');
+                outputDiv.innerHTML = '';  // Clear previous results
+                for (const [key, value] of Object.entries(data)) {
+                    // Create hyperlink
+                    const anchor = document.createElement('a');
+                    anchor.href = value;
+                    anchor.textContent = `Image ${key}: ${value}`;
+                    anchor.target = '_blank';  // Open in new tab
+
+                    // Append hyperlink to outputDiv with a line break
+                    outputDiv.appendChild(anchor);
+                    outputDiv.appendChild(document.createElement('br'));
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('jsonOutput').textContent = 'Error loading data.';
+            });
+    } else {
+        alert('Please enter a keyword.');
+    }
+}
+
+    </script>
+</body>
+</html>
