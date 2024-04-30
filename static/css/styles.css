@@ -1,0 +1,67 @@
+/* styles.css */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.navbar {
+    position: relative;
+    width: 100%;
+    background: #000;
+    overflow: hidden;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.navbar ul li {
+    margin: 0 20px;
+    
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+}
+
+/* Background animation */
+.navbar {
+    background: #000 url('https://giphy.com/gifs/cute-space-astronaut-xT8qBhrlNooHBYR9f2') no-repeat;
+    animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+    from { background-position: 0 0; }
+    to { background-position: 1000px 0; }
+}
+
+
+.button {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgb(0, 0, 0);
+    padding: 15px 40px;
+    border-radius: 4px;
+    font-weight: normal;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+  }
+
+
+  .glow-button:hover {
+    background-color: black;
+
+    color: rgb(255, 255, 255);
+    box-shadow: 0 5px 15px rgba(9, 8, 10, 0.4);
+  }

@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NASA Image Keyword Search</title>
     <style>
         #jsonOutput {
-            white-space: pre; /* Maintains formatting */
+            white-space: pre; 
             background: #f4f4f4;
             padding: 10px;
             border-radius: 5px;
@@ -15,13 +18,40 @@
     </style>
 </head>
 <body>
-    <h1>NASA Image Keyword Search</h1>
-    <input type="text" id="keyword" placeholder="Enter keyword (e.g., 'moon')">
-    <button onclick="getImages()">Search Images</button>
-    <div id="jsonOutput"></div>
+    
+    <nav class="navbar">
+        <ul>
+            <li><a style="text-align: left;"></a></li>
+            <li><a>NASA Image Search</a></li>
+            
+        </ul>
+    </nav>
+
+    
+    
+    <form style="margin-top: 20px;" class="max-w-md mx-auto">   
+        <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+            </div>
+            <input type="text" id="keyword" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter keyword (e.g., 'moon')" />
+            <button onclick="getImages(event)"  style="background-color: rgb(54, 53, 53);"  class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 buttom glow-button">Search Images</button>
+            
+        </div>
+        <div class="text-lg font-medium text-gray-900 dark:text-black" style="background-color: rgb(255, 255, 255); "  id="jsonOutput">
+        
+        
+        </div>
+    </form>
+
+    
 
     <script>
-        function getImages() {
+        function getImages(event) {
+    event.preventDefault();  // Prevent the form from submitting normally
     var keyword = document.getElementById('keyword').value;
     if (keyword) {
         fetch('/get_images/?keyword=' + encodeURIComponent(keyword))
@@ -55,6 +85,8 @@
     }
 }
 
+
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>

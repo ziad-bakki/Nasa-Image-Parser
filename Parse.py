@@ -15,7 +15,7 @@ def get_images():
     first_page = 1
     last_page = 10
     image_data = {}
-    count = 0
+    count = 1
     for page_number in range(first_page, last_page + 1):
         new_url = URL + str(page_number) + '/'
         response = requests.get(new_url)  # Rename variable to avoid confusion with Flask's request
