@@ -28,8 +28,10 @@ def get_images():
                 if keyword.lower() in src.lower():  # Ensure case insensitive comparison
                     image_data[count] = src
                     count += 1
-            
+    if not image_data:
+        not_found = '\'' + keyword + '\''
+        image_data[not_found] = 'Not Found!'   
     return jsonify(image_data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8000, debug=True)
